@@ -98,6 +98,16 @@ function startGame() {
 
         })
     }
+    if (sum < 21) {
+        rl.question(" you want to draw a card? (Y/N): ", function (answerIn) {
+            answer = answerIn;
+            if (answer == "Y") {
+                drawCard();
+
+            }
+
+        })
+    }
 }
 
 /*
@@ -148,23 +158,21 @@ function setBet() {
 
 function drawCard() {
 
-    while (sum < 21) {
 
-        switch (answer) {
-            case "Y":
-                console.log("Draw the card...");
-                Addcard(selectedCards);
-                answer="";
-                break;
-            case "N":
-                console.log("Ok, game finished.");
-                setBet();
+    switch (answer) {
+        case "Y":
+            console.log("Draw the card...");
+            Addcard(selectedCards);
 
-                break;
-            default:
-                console.log("Invalid input. ");
-                break;
-        }
+            break;
+        case "N":
+            console.log("Ok, game finished.");
+            setBet();
+
+            break;
+        default:
+            console.log("Invalid input. ");
+            break;
     }
 
 };
@@ -199,12 +207,23 @@ function sumEachCard(elem) {
     sum += Number(elem);
 
 }
-
+let exit= false;
 
 console.log("Blackjack");
 console.log("Feeling with luck? - Give it a try~~");
 
 startGame();
 playingGame();
+if(sum<21){
+    exit = true;
+while (!exit)
+{
+    rl.question(" Play  again  (Y/N): ", function (answerIn) {
+        answer = answerIn;
+        console.log("your answer"+answer)
+        system.pause()
+    })
+}
 
+}
 
