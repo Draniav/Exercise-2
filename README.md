@@ -27,8 +27,8 @@ R3: Player loses or quit -> End of the game, Player won $2000
 ## Archives
 
 > ### Black-jack.js          : Archive what contains the code to run  the application 
-
-
+> ### Black-jack.html        : Archive what contains the code to run  the application in  html (incomplete)
+> ### cards.js, player.js    : Archive what contains OOP from  cards and player
 
 ## IDE
 
