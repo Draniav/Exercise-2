@@ -1,0 +1,19 @@
+body {
+    color: goldenrod;
+    background-image: url("BLACK-JACK.jpg") ;
+    background-size: auto;
+    font-family: 'Lucida Sans Unicode';
+    text-align: center;
+    color:white;
+    font-weight: bold;
+}
+
+h1 {
+    color: goldenrod;
+
+}
+
+
+#message-el{
+font-style: italic;
+}

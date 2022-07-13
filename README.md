@@ -12,7 +12,7 @@
 
 ## About
 In this repository is the solution to the 2nd Exercise; its said: 
-Create a application with  the rules of a blackjack,
+Create an application with  the rules of a blackjack,
 For this activity you will finish blackjack game adding and changing some parts:
 
 1. App an OOP approach for Cards and Players: Define them as objects.
@@ -29,7 +29,8 @@ R3: Player loses or quit -> End of the game, Player won $2000
 > ### Black-jack.js          : Archive what contains the code to run  the application 
 > ### Black-jack.html        : Archive what contains the code to run  the application in  html (incomplete)
 > ### cards.js, player.js    : Archive what contains OOP from  cards and player
-
+> ### Style.css              : Archive what controls the styles into Black-jack.html 
+>
 ## IDE
 
 The workshop was developed using IntelliJ Express.  
@@ -39,7 +40,7 @@ The workshop was developed using IntelliJ Express.
 ## Status
 >in develop
 
->last update 7/11/2022.    
+>last update 7/13/2022.    
 
 ## Screen Shoots
 The app let add cards and sums the values and detects if the card was A, J, Q, K,  and assigns the respective value.  
