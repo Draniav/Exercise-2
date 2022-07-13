@@ -88,26 +88,40 @@ function startGame() {
 
     console.log("Cards: " + selectedCards);
     console.log("Sum: " + sumCards(selectedCards));
+    console.log("sum = " + sum)
+
     if (sum < 21) {
         rl.question(" you want to draw a card? (Y/N): ", function (answerIn) {
             answer = answerIn;
             if (answer == "Y") {
+                console.log("im  here 1")
                 drawCard();
 
             }
+            rl.question(" you want to draw a card? (Y/N): ", function (answerIn) {
+                answer = answerIn;
+                if (answer == "Y") {
+                    console.log("im  here 1")
+                    drawCard();
+
+                }
+                rl.question(" you want to draw a card? (Y/N): ", function (answerIn) {
+                    answer = answerIn;
+                    if (answer == "Y") {
+                        console.log("im  here 1")
+                        drawCard();
+
+                    }
+
+
+                })
+
+            })
 
         })
-    }
-    if (sum < 21) {
-        rl.question(" you want to draw a card? (Y/N): ", function (answerIn) {
-            answer = answerIn;
-            if (answer == "Y") {
-                drawCard();
 
-            }
-
-        })
     }
+
 }
 
 /*
@@ -115,6 +129,19 @@ function startGame() {
 = 21 - Blackjack!
 > 21 - Y
 */
+function cardscards() {
+    rl.question(" you want to draw a card? (Y/N): ", function (answerIn) {
+        answer = answerIn;
+        if (answer == "Y") {
+            drawCard();
+
+        }
+        if (answer == "N") {
+            console.log("im  here 1")
+            drawCard();
+        }
+    })
+}
 
 function playingGame() {
     if (sum < 21) {
@@ -183,47 +210,24 @@ function sumCards(cards) {
     return sum;
 }
 
+
 function sumEachCard(elem) {
 
-    //TO DO: separate what is number and what is letter, and set the corresponding value. regexp + test()
 
-    //if (/^[a-zA-z]/.test(elem)) { //if the elem is a letter?
-    //if (elem === "K" || elem === "Q" || elem === "J") {
-    //sum += 10;
-
-    //  console.log(sum);
-
-    //}
-    //1. Check if the A card already exists
-    //2. sum == 20 , A = 1.
-    //if (selectedCards.filter(n => n === "A").length === 1 || sum === 20) {
-    //      sum += 1;
-    //}
-    //  sum += 11;
-
-
-    //}
-    //At this point it means that it is a number, but it remains as string bc of ""
     sum += Number(elem);
 
 }
-let exit= false;
+
+function round() {
+
+}
+
+let exit = false;
 
 console.log("Blackjack");
 console.log("Feeling with luck? - Give it a try~~");
 
 startGame();
 playingGame();
-if(sum<21){
-    exit = true;
-while (!exit)
-{
-    rl.question(" Play  again  (Y/N): ", function (answerIn) {
-        answer = answerIn;
-        console.log("your answer"+answer)
-        system.pause()
-    })
-}
 
-}
 
