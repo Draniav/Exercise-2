@@ -110,7 +110,11 @@ function startGame() {
                     if (answer == "Y") {
                         console.log("im  here 1")
                         drawCard();
-
+                        if (sum > 21) {
+                            console.log("you  lose");
+                            bet -= 1000;
+                            setBet();
+                        }
                     }
 
 
@@ -120,6 +124,16 @@ function startGame() {
 
         })
 
+    }
+    if (sum === 21) {
+        console.log("Blackjack!");
+        bet += 1000;
+        setBet();
+    }
+    if (sum > 21) {
+        console.log("you  lose");
+        bet -= 1000;
+        setBet();
     }
 
 }
@@ -207,6 +221,7 @@ function drawCard() {
 
 function sumCards(cards) {
     cards.forEach(sumEachCard);
+
     return sum;
 }
 
