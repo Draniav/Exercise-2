@@ -40,7 +40,7 @@ The workshop was developed using IntelliJ Express.
 ## Status
 >in develop
 
->last update 7/13/2022.    
+>last update 7/14/2022.    
 
 ## Screen Shoots
 The app let add cards and sums the values and detects if the card was A, J, Q, K,  and assigns the respective value.  
