@@ -44,6 +44,6 @@ The workshop was developed using IntelliJ Express.
 
 ## Screen Shoots
 The app let add cards and sums the values and detects if the card was A, J, Q, K,  and assigns the respective value.  
-<img src="C:\Users\aafac\IdeaProjects\League\Black_jack\blackjack pic.png"/>  
+<img src="blackjack pic.png">  
 when  the app detects what sum is superior to  21 it reduces the bet in 1000 and if it is negative the bets becomes 0  
-<img src="C:\Users\aafac\IdeaProjects\League\Black_jack\reward.png"/>
+<img src="reward.png">
