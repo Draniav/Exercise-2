@@ -1,6 +1,6 @@
 //const cards = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "K", "Q", "J"]
 const cardsV = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10];
-const cards = ["A","K"];
+const cards = ["A", "K"];
 
 const suits = ["♣", "♦", "♥", "♠"]
 const cardspool = ["A♣", "2♣", "3♣", "4♣", "5♣", "6♣", "7♣", "8♣", "9♣", "10♣", "K♣", "Q♣", "J♣", "A♦", "2♦", "3♦", "4♦", "5♦", "6♦", "7♦", "8♦", "9♦", "10♦", "K♦", "Q♦", "J♦", "A♥", "2♥", "3♥", "4♥", "5♥", "6♥", "7♥", "8♥", "9♥", "10♥", "K♥", "Q♥", "J♥", "A♠", "2♠", "3♠", "4♠", "5♠", "6♠", "7♠", "8♠", "9♠", "10♠", "K♠", "Q♠", "J♠"];
@@ -19,35 +19,51 @@ let bet = 0;
 let betR = 0;
 let ace = false;
 
+function setBet() {
+    if (bet < 0) {
+        bet = 0;
+    }
+}
 
 function resetGame() {
-    betR = 0;
+    if (sum == 0) {
+        bet = 0;
+    }
+
+
+    setBet();
     selectedCards = [];
     selectedCardsvalue = [];
     sum = 0;
     died = false;
     blackjack = false;
-    msg = "";
-    bet = 0;
+    msg = "Feeling with luck?";
+
+
+    betR = 0;
+    ace = false;
     document.getElementById("msg").innerText = "Feeling with luck?";
     document.getElementById("sum").innerText = "Sum : " + sum;
     document.getElementById("cards").innerText = "cards :";
     document.getElementById("cardsV").innerText = "cardsV : " + selectedCardsvalue;
     document.getElementById("bet").innerText = "Reward : " + bet;
-
+    document.getElementById("betR").innerText = "RewardR : " + betR;
+    document.getElementById("resetbtn").textContent = "Quit";
+    document.getElementById("drawbtn").disable = false;
+    renderGame();
 }
 
 
 function renderGame() {
-    if (bet < 0) {
-        bet = 0;
-    }
+    setBet();
 
     document.getElementById("msg").innerText = msg;
     document.getElementById("sum").innerText = "Sum : " + sum;
     document.getElementById("cards").innerText = "cards : " + selectedCards;
     document.getElementById("cardsV").innerText = "cardsV : " + selectedCardsvalue;
     document.getElementById("bet").innerText = "Reward : " + bet;
+    document.getElementById("betR").innerText = "RewardR : " + betR;
+
 }
 
 
@@ -57,6 +73,8 @@ function reward() {
         died = false
         blackjack = true;
         bet += 1000 + betR;
+        document.getElementById("resetbtn").textContent = "New game";
+        document.getElementById("drawbtn").disable = true;
 
 
     } else if (sum < 21) {
@@ -68,10 +86,14 @@ function reward() {
         died = true
         blackjack = false;
         bet -= 1000;
+        document.getElementById("resetbtn").textContent = "New game";
+        document.getElementById("drawbtn").disable = true;
+        document.getElementById("playbtn").disable = true;
     }
 }
 
 function playGame() {
+
     addCard(selectedCards);
     addCard(selectedCards);
     reward()
@@ -80,17 +102,21 @@ function playGame() {
 }
 
 function newCard() {
-    addCard(selectedCards)
-    renderGame()
+    if (sum < 21) {
+        addCard(selectedCards)
+        renderGame()
+    } else {
+        reward();
+        renderGame();
+    }
 }
 
 
 function addCard() {
-//add ramdom  card
+    //add ramdom  card
     const addedcard = Math.floor(Math.random() * cards.length);
 
     // const addedsuit = Math.floor(Math.random() * suits.length)
-
     selectedCards.push(cards[addedcard])
     if (cards[addedcard] == "A" && sum < 21 && died == false && ace == false) {
 
@@ -105,22 +131,22 @@ function addCard() {
         ace = true;
         betR += 500;
 
-    } else if (cards[addedcard] == "J" || cards[addedcard] == "Q" || cards[addedcard] == "K") {
-        alert(cards[addedcard])
+    } else if ((cards[addedcard] == "J" || cards[addedcard] == "Q" || cards[addedcard] == "K") && died == false) {
+
         selectedCardsvalue.push(10)
         sum += 10;
         betR += 500;
+    } else {
+        let aux = addedcard
+        selectedCardsvalue.push(cards[aux])
+        sum += aux + 1;
+        betR += 100;
+
     }
 
 
 }
 
-
-console.log("Hola")
-console.log("the value of sum :" + sum)
-console.log("player is died : " + died)
-console.log("blackjack:" + blackjack)
-console.log(msg)
 
 
 
