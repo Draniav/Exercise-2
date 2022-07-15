@@ -1,6 +1,7 @@
 //const cards = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "K", "Q", "J"]
 const cardsV = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10];
-const cards = ["A",3,"K"];
+const cards = ["A", 2, 3, 4, 5, 6, 7, 8, 9, 10, "K"];
+//const cards = ["A", "K"];
 
 const suits = ["♣", "♦", "♥", "♠"]
 const cardspool = ["A♣", "2♣", "3♣", "4♣", "5♣", "6♣", "7♣", "8♣", "9♣", "10♣", "K♣", "Q♣", "J♣", "A♦", "2♦", "3♦", "4♦", "5♦", "6♦", "7♦", "8♦", "9♦", "10♦", "K♦", "Q♦", "J♦", "A♥", "2♥", "3♥", "4♥", "5♥", "6♥", "7♥", "8♥", "9♥", "10♥", "K♥", "Q♥", "J♥", "A♠", "2♠", "3♠", "4♠", "5♠", "6♠", "7♠", "8♠", "9♠", "10♠", "K♠", "Q♠", "J♠"];
@@ -29,8 +30,6 @@ function resetGame() {
     if (sum == 0) {
         bet = 0;
     }
-
-
     setBet();
     selectedCards = [];
     selectedCardsvalue = [];
@@ -38,8 +37,6 @@ function resetGame() {
     died = false;
     blackjack = false;
     msg = "Feeling with luck?";
-
-
     betR = 0;
     ace = false;
     document.getElementById("msg").innerText = "Feeling with luck?";
@@ -49,11 +46,10 @@ function resetGame() {
     document.getElementById("bet").innerText = "Reward : " + bet;
     document.getElementById("betR").innerText = "RewardR : " + betR;
     document.getElementById("resetbtn").textContent = "Quit";
-   // document.getElementById("drawbtn").Disable = false;
-    //document.getElementById("playbtn").enable=true;
-  //  renderGame();
+    document.getElementById("drawbtn").Disable = true;
+    document.getElementById("playbtn").enable = true;
+    //  renderGame();
 }
-
 
 function renderGame() {
     setBet();
@@ -64,9 +60,7 @@ function renderGame() {
     document.getElementById("cardsV").innerText = "cardsV : " + selectedCardsvalue;
     document.getElementById("bet").innerText = "Reward : " + bet;
     document.getElementById("betR").innerText = "RewardR : " + betR;
-
 }
-
 
 function reward() {
     if (sum === 21 && died == false) {
@@ -75,34 +69,32 @@ function reward() {
         blackjack = true;
         bet += 1000 + betR;
         document.getElementById("resetbtn").textContent = "New game";
-       // document.getElementById("drawbtn").Disable = true;
+        document.getElementById("drawbtn").Disable = true;
 
 
     } else if (sum < 21) {
         msg = "do  you  want pick  a card?"
         died = false
         blackjack = false;
-       // document.getElementById("playbtn").removeEventListener(onclick());
+        // document.getElementById("playbtn").removeEventListener(onclick());
     } else {
         msg = "You lost"
         died = true
         blackjack = false;
-        bet -= 1000;
+        //bet -= 1000;
 
         document.getElementById("resetbtn").textContent = "New game";
-       // document.getElementById("drawbtn").Disable = true;
-        //document.getElementById("playbtn").visibility=hidden;
-        //document.getElementById("playbtn").removeEventListener(onclick());
+        document.getElementById("playbtn").Disable = true;
+
     }
 }
 
 function playGame() {
-
+    document.getElementById("playbtn").Disable = true;
     addCard(selectedCards);
     addCard(selectedCards);
     reward()
     renderGame()
-
 }
 
 function newCard() {
@@ -115,11 +107,8 @@ function newCard() {
     }
 }
 
-
 function addCard() {
-    //add ramdom  card
     const addedcard = Math.floor(Math.random() * cards.length);
-
     // const addedsuit = Math.floor(Math.random() * suits.length)
     selectedCards.push(cards[addedcard])
     if (cards[addedcard] == "A" && sum < 21 && died == false && ace == false) {
@@ -142,9 +131,9 @@ function addCard() {
         betR += 500;
     } else {
         let aux = cards[addedcard]
-        alert (aux)
+
         selectedCardsvalue.push(aux)
-        sum += aux ;
+        sum += aux;
         betR += 100;
 
     }
