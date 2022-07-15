@@ -1,6 +1,6 @@
 //const cards = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "K", "Q", "J"]
 const cardsV = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10];
-const cards = ["A", "K"];
+const cards = ["A",3,"K"];
 
 const suits = ["♣", "♦", "♥", "♠"]
 const cardspool = ["A♣", "2♣", "3♣", "4♣", "5♣", "6♣", "7♣", "8♣", "9♣", "10♣", "K♣", "Q♣", "J♣", "A♦", "2♦", "3♦", "4♦", "5♦", "6♦", "7♦", "8♦", "9♦", "10♦", "K♦", "Q♦", "J♦", "A♥", "2♥", "3♥", "4♥", "5♥", "6♥", "7♥", "8♥", "9♥", "10♥", "K♥", "Q♥", "J♥", "A♠", "2♠", "3♠", "4♠", "5♠", "6♠", "7♠", "8♠", "9♠", "10♠", "K♠", "Q♠", "J♠"];
@@ -49,8 +49,9 @@ function resetGame() {
     document.getElementById("bet").innerText = "Reward : " + bet;
     document.getElementById("betR").innerText = "RewardR : " + betR;
     document.getElementById("resetbtn").textContent = "Quit";
-    document.getElementById("drawbtn").disable = false;
-    renderGame();
+   // document.getElementById("drawbtn").Disable = false;
+    //document.getElementById("playbtn").enable=true;
+  //  renderGame();
 }
 
 
@@ -68,27 +69,30 @@ function renderGame() {
 
 
 function reward() {
-    if (sum === 21) {
+    if (sum === 21 && died == false) {
         msg = "Blackjack!";
-        died = false
+        died = true;
         blackjack = true;
         bet += 1000 + betR;
         document.getElementById("resetbtn").textContent = "New game";
-        document.getElementById("drawbtn").disable = true;
+       // document.getElementById("drawbtn").Disable = true;
 
 
     } else if (sum < 21) {
         msg = "do  you  want pick  a card?"
         died = false
         blackjack = false;
+       // document.getElementById("playbtn").removeEventListener(onclick());
     } else {
         msg = "You lost"
         died = true
         blackjack = false;
         bet -= 1000;
+
         document.getElementById("resetbtn").textContent = "New game";
-        document.getElementById("drawbtn").disable = true;
-        document.getElementById("playbtn").disable = true;
+       // document.getElementById("drawbtn").Disable = true;
+        //document.getElementById("playbtn").visibility=hidden;
+        //document.getElementById("playbtn").removeEventListener(onclick());
     }
 }
 
@@ -137,9 +141,10 @@ function addCard() {
         sum += 10;
         betR += 500;
     } else {
-        let aux = addedcard
-        selectedCardsvalue.push(cards[aux])
-        sum += aux + 1;
+        let aux = cards[addedcard]
+        alert (aux)
+        selectedCardsvalue.push(aux)
+        sum += aux ;
         betR += 100;
 
     }
